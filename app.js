@@ -4,8 +4,8 @@ const {engine} = require('express-handlebars')
 const port = 3000
 
 
-app.engine('handlebars', engine({ defaultLayout: 'main', extname: '.hbs'}))
-app.set('view engine', 'handlebars')
+app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs'}))
+app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
   res.render('index')
