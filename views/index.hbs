@@ -15,7 +15,16 @@
   
   <div class="d-flex-inline mt-5">
     <span>shorten url: </span>
-    <input class="d-flex-fill p-2" type="text" value="{{ newUrl }}" style="width: 70%;" disabled>
-    <button>copy</button>
+    <input class="d-flex-fill p-2"  id="myInput" type="text" value="{{ newUrl }}" style="width: 70%;" disabled>
+    <button class="btn btn-primary" onclick="myFunction()">copy</button>
   </div>
 </div> 
+<script>
+  function myFunction() {
+      const copyText = document.querySelector('#myInput');
+      copyText.select()
+      copyText.setSelectionRange(0, 99999)
+      navigator.clipboard.writeText(copyText.value)
+      alert('Copied!');
+    }
+</script>
