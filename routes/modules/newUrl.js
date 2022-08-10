@@ -7,7 +7,7 @@ const generateShortenUrl = require('../../generateShortenUrl')
 router.get('/:url', (req, res) => {
   const url = req.params
   // console.log(url)
-  return ShortUrl.find({url: url})
+  return ShortenUrl.find({url: url})
     .lean()
     .then(data => {
       // console.log(data.url)
@@ -15,5 +15,15 @@ router.get('/:url', (req, res) => {
     })
     .catch(err => console.log(err))
 })
+
+router.get('/:url', (req, res) => {
+  const url = req.params
+  console.log(url)
+  return ShortenUrl.find(url)
+    .lean()
+    .then(data => res.redirect(`${data.url}`))
+    .catch(err => console.log(err))
+})
+
 
 module.exports = router

@@ -29,13 +29,6 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/:url', (req, res) => {
-  const url = req.params
-  console.log(url)
-  return ShortUrl.find(url)
-    .lean()
-    .then(data => res.redirect(`${data.url}`))
-    .catch(err => console.log(err))
-})
+
 
 module.exports = router
