@@ -17,4 +17,4 @@ function generateShortenUrl() {
   return newUrl 
 }
 
-//module.exports = generateShortenUrl
+module.exports = generateShortenUrl

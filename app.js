@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const { engine } = require('express-handlebars')
-const port = 3000
+const PORT = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 const generateShortenUrl = require('./generateShortenUrl') //產生五位英數字
 const ShortenUrl = require('./models/shortenUrl')  //model
@@ -28,28 +28,28 @@ app.get('/', (req, res) => {
 })
 
 
-
+//找到回傳，沒找到則新增
 app.post('/', (req, res) => {
-  const url = generateShortenUrl()
+  const shortenUrl = generateShortenUrl()
   const originalUrl = req.body.url
   console.log(originalUrl)
-  return ShortenUrl.create(originalUrl)
-      .then(() => res.render('index', { url }))
-      .catch(err => console.log(err))
-     
+  console.log(shortenUrl)
+  let option = { upsert: true}
+  return ShortenUrl.findOneAndUpdate({ url: originalUrl },{ $setOnInsert: {
+    url: originalUrl,
+    new_url: shortenUrl}},
+    option)
+    .lean()
+    .then(data => {
+      let newUrl = data.new_url
+      return res.render('index', { newUrl })
+    })
+    .catch(err => console.log(err))
+
 })
-app.listen(port, (req, res) => {
-  console.log(`It is running on http://localhost:${port}`)
+
+app.listen(PORT, (req, res) => {
+  console.log(`It is running on http://localhost:${PORT}`)
 })
 
 
-// return ShortenUrl.find()
-//   .lean()
-//   .then(urlData => {
-//     const filteredUrl = urlData.find(item => item.url === originalUrl)
-//     console.log(filteredUrl)
-//     filteredUrl.length === 0 ? res.render('index', { originalUrl }) : res.render('index', { filteredUrl })
-//   }
-//     .catch(err => console.log(err))
-// })   
-//   )
