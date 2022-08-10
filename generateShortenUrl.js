@@ -8,7 +8,7 @@ function generateShortenUrl() {
   const lowerCase = 'abcdefghijklmnopqrstuvwxyz'
   const upperCase = lowerCase.toUpperCase()
   const numbers = '0123456789'
-  let newUrl = 'https://a-cutter.herokuapp.com/'
+  let newUrl = 'https://localhost:3000/'
   let array = lowerCase + upperCase + numbers
   
   for (let i = 0; i < 5; i ++){
@@ -16,5 +16,5 @@ function generateShortenUrl() {
   }
   return newUrl 
 }
-
+// 'https://a-cutter.herokuapp.com/'
 module.exports = generateShortenUrl

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const ShortenUrl = require('../../models/shortenUrl') //model
-const generateShortenUrl = require('./../../generateShortenUrl') //產生五位英數字
+const generateShortenUrl = require('../../generateShortenUrl') //產生五位英數字
 
 router.get('/', (req, res) => {
   res.render('index')
@@ -11,21 +11,30 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const shortenUrl = generateShortenUrl()
   const originalUrl = req.body.url
-  console.log(originalUrl)
-  console.log(shortenUrl)
+  
+  
   let option = { upsert: true }
   return ShortenUrl.findOneAndUpdate({ url: originalUrl }, {
     $setOnInsert: {
       url: originalUrl,
       new_url: shortenUrl
     }
-  },
-    option)
+  }, option)
     .lean()
     .then(data => {
-      let newUrl = data.new_url
-      return res.render('index', { newUrl })
+      let shortUrl = data.new_url
+      let url = data.url
+      return res.render('index', { shortUrl, url })
     })
+    .catch(err => console.log(err))
+})
+
+router.get('/:url', (req, res) => {
+  const url = req.params
+  console.log(url)
+  return ShortUrl.find(url)
+    .lean()
+    .then(data => res.redirect(`${data.url}`))
     .catch(err => console.log(err))
 })
 
