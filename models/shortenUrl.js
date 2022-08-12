@@ -8,6 +8,10 @@ const shortenUrlSchema = new Schema ({
   new_url:{
     type: String,
     require: true
+  },
+  urlCode:{
+    type: String,
+    require: true
   }
 })
 
