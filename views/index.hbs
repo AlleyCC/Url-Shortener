@@ -1,9 +1,23 @@
 <div class="container-fluid m-3" style="width: 75%;">
-  <div class="d-flex-block justify-content-center">
+  <div class="mx-auto" style="width: 65%;">
     <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="#"
-    style="height:25%; width:30%;">
+      style="width: 200px; height: 200px;">
+    
+    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="#"
+      style="width: 150px; height: 150px;">
+    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="#"
+      style="width: 100px; height: 100px;">
+    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="#"
+      style="width: 50px; height: 50px;">
+  </div>
+  
+  <div class="d-flex flex-column mx-auto">
     <form action="/" method="POST"> 
-      
+      {{#if alert}}
+      <div class="m-3">
+        <h2>{{ alert }}</h2>
+      </div>
+      {{/if}}
       <div class="input-group m-3">
         <span class="input-group-text" id="basic-addon3">URL</span>
         <input name="url" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
@@ -15,9 +29,10 @@
   
   <div class="input-group m-3">
     
-    <a href="/{{ code }}"><span class="m-2 fs-4">前往</span></a>
-    <input class="d-flex-fill p-2"  id="myInput" type="text" value="{{ shortUrl }}" style="width: 70%;" >
-    <button class="btn btn-primary" onclick="myFunction()">copy</button>
+    
+    <input class="form-control"  id="myInput" type="text" {{#if shortUrl}}value="{{ shortUrl }}" {{/if}} style="width: 70%;" >
+    <button class="btn input-group-text fa-regular fa-clone" onclick="myFunction()" title="複製網址"></button>
+    <a href="/{{ code }}"><button class="btn btn-primary">前往</button></a>
   </div>
 </div> 
 <script>
