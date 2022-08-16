@@ -35,21 +35,23 @@
  ```
  cd Url-Shortener
  ```
- 3.安裝npm
- ```
- npm run install
- ```
- 4.安裝其他 [套件](#environment-setup)
+ 3.安裝[Node.js](#environment-setup)
  
- 5.匯入內建預設資料
+ 4.進入環境變數設定Node.js檔案路徑
+ 
+ 5.安裝npm
  ```
- npm run seed
+ npm install
  ```
- 5.執行檔案
+ 6.安裝其他 [套件](#environment-setup)
+ ```
+ npm i express express-handlebars body-parser mongoose url-validation
+ ```
+ 7.執行檔案
  ```
  npm run dev
  ```
- 6.至瀏覽器網址欄輸入
+ 8.至瀏覽器網址欄輸入
  ```
  http://localhost:3000
  ```
