@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const ShortenUrl = require('../../models/shortenUrl') //model
 const generateShortenUrl = require('../../generateShortenUrl') //產生五位英數字
-const baseUrl = 'https://localhost:3000'
+const baseUrl = 'https://a-cutter.herokuapp.com/'
 const validateUrl = require('url-validation')
 
 router.get('/', (req, res) => {
