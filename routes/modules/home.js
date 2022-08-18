@@ -3,7 +3,7 @@ const router = express.Router()
 const ShortenUrl = require('../../models/shortenUrl') //model
 const generateShortenUrl = require('../../generateShortenUrl') //產生五位英數字
 const validateUrl = require('url-validation')
-const baseUrl = require('../../config/mongoose')
+const BASE_URL = require('../../config/mongoose')
 
 router.get('/', (req, res) => {
   res.render('index')
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
       .lean()
       .then(data => {
         const code = data.new_url
-        return res.render('index', { code, baseUrl })
+        return res.render('index', { code, BASE_URL })
       })
       .catch(err => console.log(err))
   } else {
