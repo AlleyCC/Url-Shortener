@@ -36,10 +36,12 @@
 <script>
   function myFunction() {
       const copyText = document.querySelector('#myInput');
-      const copyBtn = document.querySelector('#copy-btn')
       copyText.select()
       copyText.setSelectionRange(0, 99999)
-      navigator.clipboard.writeText(copyText.value)
-      alert('Copied!')
+      if(document.execCommand("Copy","false",null)){
+        alert("複製成功！");  
+      } else {
+        alert("複製失敗！");
+      }
     }
 </script>
