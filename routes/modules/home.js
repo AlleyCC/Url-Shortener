@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
   }
 })
 
-router.get('/:code', (req, res) => {
+router.post('/:code', (req, res) => {
   const code = req.params.code
   return ShortenUrl.findOne({ new_url: code })
     .lean()
